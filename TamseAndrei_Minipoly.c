@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
 /*
     Description: This game is called Minipoly. Minipoly is a shorter version of 
     the popular game Monopoly with the same basic rules. Two players alternate 
@@ -10,6 +6,10 @@
     Last modified: <December 4, 2022>
     Version: 1.0.1
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 // Function Prototype
 void game(int mode);
