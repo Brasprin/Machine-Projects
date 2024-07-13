@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    {{> header}}
+    {{{header}}}
+  </head>
+  <body>
+      {{#if isAuthenticated}}
+      <header>
+        <h2 class="logo">{{logo}}</h2>
+        <nav class="navigation">
+          <a href="/reserveSlot">Reserve Slot</a>
+          <a href="/editReservation">Edit Reservation</a>
+          <a href="/profile" class="icon-link">
+            <i class="fas fa-user" style="font-size: 29px"></i>
+          </a>
+          <button class="btnLogin-popup" onclick="window.location.href='/logout'">
+            Logout
+          </button>
+        </nav>
+      </header>
+    {{else}}
+      <header>
+        <h2 class="logo">{{logo}}</h2>
+        <nav class="navigation">
+            <a href="/contact">Contact</a>
+            <button class="btnLogin-popup" id="btn">Login</button>
+        </nav>
+      </header>
+    {{/if}}
+    {{{body}}}
+  </body>
+</html>

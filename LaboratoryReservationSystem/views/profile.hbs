@@ -1,0 +1,58 @@
+<div class="page">
+  <nav class="navigation"></nav>
+  <div id="top" class="container">
+    <div class="user-profile">
+      <img
+        src="images/avatar.png"
+        alt="User Profile Picture"
+        width="80"
+        height="80"
+      />
+      <div class="user-info">
+        <strong class="user-name"></strong>
+        <br />
+        <span class="user-email"></span>
+      </div>
+      {{! <button class="delete-profile-btn">Delete Profile</button> }}
+    </div>
+    <div class="user-description-box">
+      <p class="user-description"></p>
+    </div>
+
+    <h2>Reservations</h2>
+
+    <table class="lab-reservations">
+      <thead>
+        <tr>
+          <th>Room</th>
+          <th>Seat Number</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Reservations will be dynamically inserted here -->
+      </tbody>
+    </table>
+    {{! 
+    <button class="edit-profile-btn">Edit Profile</button> }}
+  </div>
+
+  <div class="container">
+    <h2>Public Profile</h2>
+
+    <table class="public-profile">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

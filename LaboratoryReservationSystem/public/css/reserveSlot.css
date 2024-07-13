@@ -1,0 +1,415 @@
+.navigation a {
+  position: relative;
+  font-size: 1.1em;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+}
+
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+
+.navigation a:hover::after {
+  transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: 0.5s;
+}
+
+.navigation .editReservationButton {
+  width: 200px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: 0.5s;
+}
+
+.navigation .editReservationButton:hover {
+  background: #fff;
+  color: black;
+}
+
+.calendar {
+  background-color: rgb(50, 50, 50, 0.92);
+  color: white;
+  border-radius: 5px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 5px 5px 10px black;
+  height: 530px;
+}
+
+.calendar_inner {
+  padding: 2rem;
+}
+
+.calendar_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.fas.fa-arrow-left,
+.fas.fa-arrow-right {
+  cursor: pointer;
+}
+
+#selectLabContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectLab_text {
+  margin: 0;
+}
+
+#selectedLab {
+  background-color: rgb(216, 216, 216);
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  padding: 0.2rem 0.2rem;
+}
+
+.current_datetime {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.current_datetime .day_text {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  padding: 0.08rem 1rem;
+  margin-right: 80px;
+}
+
+.date_text {
+  font-size: 18px;
+  text-align: center;
+  flex: 1;
+}
+
+.day_date ul {
+  list-style: none;
+}
+.day_date .day,
+.date {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.dates {
+  margin-top: 1rem;
+}
+
+.day_date .day li {
+  border-bottom: 2px solid rgb(255, 255, 255);
+  margin: 0 0.2rem;
+}
+
+.date li {
+  padding: 0.5rem;
+  margin: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+}
+
+.day_date .date li:hover {
+  background-color: rgb(130, 130, 130);
+  color: black;
+}
+
+.day_date .date li.active {
+  background-color: rgb(19, 149, 255);
+}
+
+.day_date .dummy {
+  color: gray;
+}
+
+/* Reservation Codes */
+
+.timeslot_container,
+.seatnumber_container {
+  background-color: rgb(50, 50, 50, 0.92);
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px black;
+  height: 525px;
+  margin-left: 50px;
+}
+
+.timeslot_container {
+  width: 350px;
+}
+
+.timeslot-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 21px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.seatnumber_container {
+  width: 290px;
+}
+
+.seat-container {
+  margin-bottom: -8px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.seat-info {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 300;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeslot_reservation,
+.seatnumber_reservation {
+  padding: 2.7rem;
+  color: white;
+}
+
+.timeslot_reservation h3,
+.seatnumber_reservation h3 {
+  font-size: 16px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.timeslot_reservation p,
+.seatnumber_reservation p {
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.seatnumber_reservation h2 {
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 90%;
+  text-align: center;
+}
+
+.timeslot_reservation .info,
+.seatnumber_reservation .info {
+  font-style: italic;
+  color: rgb(19, 149, 255);
+  font-size: 16px;
+  text-align: right;
+}
+
+#slotsLeft,
+#fullyBooked,
+#unavailable {
+  flex-shrink: 0;
+  width: 150px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#unavailable {
+  color: rgb(255, 0, 0);
+  cursor: default;
+}
+#slotsLeft {
+  color: rgb(96, 255, 96);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#fullyBooked {
+  color: rgb(255, 0, 43);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.available,
+.booked,
+.unavailable {
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 90px;
+  height: 30px;
+  display: inline-block;
+  margin-left: 10px;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 300;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.available {
+  background-color: rgb(96, 255, 96);
+}
+
+.booked,
+.unavailable {
+  background-color: rgb(255, 0, 43);
+}
+
+.unavailable {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.available:hover,
+.booked:hover {
+  opacity: 0.8;
+}
+
+.wholeOverlay {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+.overlay {
+  background-color: rgb(50, 50, 50);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #000000;
+  min-height: 525px;
+  min-width: 350px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  padding-left: 15px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#bookingDetailsTag {
+  font-size: 20px;
+  margin-top: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(19, 149, 255);
+}
+#bookingInfo {
+  font-style: italic;
+  margin-left: 21px;
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: left;
+  justify-content: center;
+}
+
+.bookingInfoValue {
+  font-style: normal;
+  color: rgb(19, 149, 255);
+  margin-left: 5px;
+}
+.bookingConfirmed {
+  font-style: normal;
+  color: rgb(96, 255, 96);
+
+  margin-left: 30px;
+}
+
+.bookingLine {
+  display: block;
+}
+
+#confirmButton,
+#cancelButton {
+  font-weight: 300;
+  background-color: rgb(96, 255, 96);
+  color: rgb(0, 0, 0);
+  padding: 10px 10px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+#cancelButton {
+  background-color: rgb(255, 0, 43);
+}
+
+#confirmButton:hover,
+#cancelButton:hover {
+  opacity: 0.8;
+}

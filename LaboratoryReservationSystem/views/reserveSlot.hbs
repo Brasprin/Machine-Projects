@@ -1,0 +1,56 @@
+<div class="calendar">
+  <div class="calendar_inner">
+    <div class="calendar_arrows">
+      <div class="calendar_heading">
+        <i class="fas fa-arrow-left" id="previous"></i>
+        <h2 class="month_year">{{monthYear}}</h2>
+        <i class="fas fa-arrow-right" id="next"></i>
+      </div>
+      <div id="selectLabContainer">
+        <p class="selectLab_text">Select Laboratory:</p>
+        <select id="selectedLab">
+          {{#each labs}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="current_datetime">
+        <p class="day_text">Today</p>
+        <p class="date_text"></p>
+      </div>
+      <div class="day_date">
+        <ul class="day">
+          {{#each daysOfWeek}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+        <ul class="date">
+          {{#each dates}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reservation Code -->
+<div class="timeslot_container">
+  <div class="timeslot_reservation">
+    <div class="time_slot"></div>
+  </div>
+</div>
+
+<div class="seatnumber_container">
+  <div class="seatnumber_reservation">
+    <div class="seat_number"></div>
+  </div>
+</div>
+
+<div id="myOverlay" class="wholeOverlay">
+  <div class="overlay">
+    <span class="close">&times;</span>
+    <h3 id="bookingDetailsTag">Booking Details</h3>
+    <p id="bookingInfo"></p>
+  </div>
+</div>

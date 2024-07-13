@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+.logo {
+  font-size: 2em;
+  color: #ffffff;
+  user-select: none;
+}
+
+.page {
+  margin-top: 80px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-profile img {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-description-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.timeslot_container {
+  position: relative;
+  width: 70%;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.lab_reservations {
+  width: 100%;
+  margin-top: 20px;
+}
+
+table.lab_reservations {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.lab_reservations th {
+  background-color: #4caf50;
+}
+.lab_reservations td {
+  background-color: white;
+}
+
+.my_reservation {
+  font-weight: bold;
+  font-size: 25px;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  color: black;
+  padding: 10px 15px;
+}
+
+.button-cell {
+  text-align: center;
+}
+
+.edit_button,
+.cancel_button {
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-block;
+  max-width: 100px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.edit_button {
+  background-color: #45a049;
+  margin-right: 10px;
+}
+
+.cancel_button {
+  background-color: #d32f2f;
+}
+
+.reserveComplete {
+  display: inline-block;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #45a049;
+  color: white;
+}

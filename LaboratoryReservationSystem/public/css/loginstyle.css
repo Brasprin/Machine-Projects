@@ -1,0 +1,297 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+#welcome-message {
+  font-size: min(13vw, 13vh, 120px);
+  color: white;
+  text-shadow: 3px 3px 5px #000000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0.9;
+  white-space: nowrap;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+  line-height: 1.2;
+}
+
+.logo {
+  font-size: 2em;
+  color: #fff;
+  user-select: none;
+}
+
+.navigation a {
+  position: relative;
+  font-size: 1.1em;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+}
+
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+
+.navigation a:hover::after {
+  transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  transition: 0.5s;
+}
+
+.navigation .btnLogin-popup:hover {
+  background: #fff;
+  color: black;
+}
+/*end of header*/
+
+/*start of wrapper*/
+.wrapper {
+  position: relative;
+  width: 400px;
+  height: 440px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255);
+  border-radius: 5%;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.12s ease, height 0.2s ease;
+  transform: scale(0);
+}
+
+.wrapper.action-popup {
+  transform: scale(1);
+}
+
+.wrapper.action {
+  height: 550px;
+  top: 50px;
+}
+
+.wrapper .form-box {
+  width: 100%;
+  padding: 40px;
+}
+
+.wrapper .form-box.login {
+  transition: transform 0.2s ease;
+  transform: translateX(0);
+}
+
+.wrapper.action .form-box.login {
+  transition: none;
+  transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+  position: absolute;
+  transition: none;
+  transform: translateX(400px);
+}
+
+.wrapper.action .form-box.register {
+  transition: transform 0.2s ease;
+  transform: translateX(0);
+}
+
+.form-box h2 {
+  font-size: 2em;
+  text-align: center;
+}
+
+.inputbox {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid rgba(0, 0, 0);
+  margin: 30px 0;
+}
+
+.inputbox label {
+  position: absolute;
+  top: 1%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: rgba(0, 0, 0);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.inputbox input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+
+.inputbox select {
+  width: 90%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+  transform: translateX(-20px);
+}
+
+.inputbox .email-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/mail.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 15px;
+  right: 8px;
+}
+
+.inputbox .password-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/lock.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 15px;
+  right: 8px;
+}
+
+.inputbox .user-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/user.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 15px;
+  right: 8px;
+}
+
+.inputbox .usertype-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/usertype.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 15px;
+  right: 8px;
+}
+
+.remember-me {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin: -15px 0 15px;
+  display: flex;
+}
+
+.remember-me label {
+  margin-left: 5px;
+}
+
+.login-submit {
+  width: 100%;
+  height: 40px;
+  background: rgba(10, 0, 0);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.register-submit {
+  width: 100%;
+  height: 40px;
+  background: rgba(10, 0, 0);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.register {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.reg-link {
+  color: rgb(238, 228, 228);
+  text-decoration: none;
+}
+
+.reg-link:hover {
+  text-decoration: underline;
+}
+
+.login {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-link {
+  color: rgb(238, 228, 228);
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
