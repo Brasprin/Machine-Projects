@@ -1,0 +1,42 @@
+PROCESS MASTER
+
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+- Change CONFIG
+
+sudo systemctl restart MySQL
+- Reset 
+
+(Use mysql -u root -p 
+password)  
+
+CREATE USER 'andrei'@'%' IDENTIFIED BY 'VDxdc5yWSYNtjv8hXaJ27bP4';
+- Create user
+
+GRANT REPLICATION SLAVE ON *.* TO 'andrei'@'%';
+- Grant Slaves 
+
+FLUSH PRIVILEGES;
+- Flush
+
+
+PROCESS SLAVES
+
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+- Change CONFIG
+
+sudo systemctl restart MySQL
+- Reset 
+
+(Use mysql -u root -p 
+password)  
+
+CHANGE MASTER TO MASTER_HOST='10.2.0.12', MASTER_USER='andrei', MASTER_PASSWORD='VDxdc5yWSYNtjv8hXaJ27bP4', MASTER_AUTO_POSITION=1, GET_MASTER_PUBLIC_KEY=1;
+- Set master
+
+START SLAVE;
+- IMPORTANT slave will not work if ayaw
+
+SHOW SLAVE STATUS\G; 
+- verify if connection is working
+
+

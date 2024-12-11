@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Steam Games CRUD</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #1b2838;
+        color: #c7d5e0;
+      }
+      .crud-container {
+        background-color: #16202d;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      .crud-mode {
+        margin-bottom: 20px;
+      }
+      .crud-mode select,
+      .crud-mode input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #66c0f4;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      #result {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #2a475e;
+        color: #c7d5e0;
+        word-wrap: break-word;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        table-layout: fixed;
+      }
+      th,
+      td {
+        border: 1px solid #66c0f4;
+        padding: 8px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      th {
+        background-color: #16202d;
+      }
+      th:nth-child(1),
+      td:nth-child(1) {
+        width: 15%;
+      }
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 60%;
+      }
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 25%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="crud-container">
+      <h1>Steam Games CRUD</h1>
+
+      <div class="crud-mode">
+        <select id="crudSelect">
+          <option value="create">Create</option>
+          <option value="read">Read</option>
+          <option value="update">Update</option>
+          <option value="delete">Delete</option>
+        </select>
+      </div>
+
+      <div class="crud-mode">
+        <input
+          type="text"
+          id="appid"
+          placeholder="App ID (Required for Create)"
+          required
+        />
+        <input
+          type="text"
+          id="name"
+          placeholder="Game Name (Optional for Read/Delete)"
+        />
+        <input
+          type="text"
+          id="price"
+          placeholder="Price (Optional for Read/Delete)"
+        />
+      </div>
+
+      <div class="crud-mode">
+        <select id="delaySelect">
+          <option value="0">No Delay</option>
+          <option value="1">1 Second</option>
+          <option value="2">2 Seconds</option>
+          <option value="3">3 Seconds</option>
+          <option value="5">5 Seconds</option>
+          <option value="10">10 Seconds</option>
+        </select>
+      </div>
+
+      <button id="submitButton">Submit</button>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      let delay = 0;
+
+      document
+        .getElementById("delaySelect")
+        .addEventListener("change", function () {
+          delay = parseInt(this.value);
+        });
+
+      document
+        .getElementById("submitButton")
+        .addEventListener("click", async () => {
+          const mode = document.getElementById("crudSelect").value;
+          const appid = document.getElementById("appid").value;
+          const name = document.getElementById("name").value;
+          const price = document.getElementById("price").value;
+          const resultDiv = document.getElementById("result");
+
+          // Clear previous result
+          resultDiv.innerHTML = "";
+
+          // Show loading message
+          resultDiv.textContent = `Processing... Delay: ${delay} seconds`;
+
+          try {
+            let response, data;
+
+            switch (mode) {
+              case "create":
+                response = await fetch("/create", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    appid,
+                    name,
+                    price,
+                    delay, // Add delay to the request body
+                  }),
+                });
+                data = await response.json();
+                resultDiv.textContent = data.message || data.error;
+                break;
+
+              case "read":
+                const query = appid 
+                  ? `/read?appid=${appid}&delay=${delay}` 
+                  : `/read?delay=${delay}`;
+                response = await fetch(query);
+                data = await response.json();
+
+                if (Array.isArray(data)) {
+                  const table = document.createElement("table");
+                  const thead = document.createElement("thead");
+                  const tbody = document.createElement("tbody");
+
+                  // Create table header
+                  thead.innerHTML = `
+            <tr>
+              <th>App ID</th>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          `;
+
+                  // Create table rows
+                  data.forEach((item) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+              <td>${item.appid}</td>
+              <td>${item.name}</td>
+              <td>${item.price}</td>
+            `;
+                    tbody.appendChild(row);
+                  });
+
+                  table.appendChild(thead);
+                  table.appendChild(tbody);
+                  resultDiv.appendChild(table);
+                } else {
+                  resultDiv.textContent = data.error || "No data found.";
+                }
+                break;
+
+              case "update":
+                response = await fetch("/update", {
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    appid,
+                    name,
+                    price,
+                    delay, // Add delay to the request body
+                  }),
+                });
+                data = await response.json();
+                resultDiv.text
+                resultDiv.textContent = data.message || data.error;
+                break;
+
+              case "delete":
+                response = await fetch("/delete", {
+                  method: "DELETE",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ 
+                    appid,
+                    delay, // Add delay to the request body
+                  }),
+                });
+                data = await response.json();
+                resultDiv.textContent = data.message || data.error;
+                break;
+
+              default:
+                resultDiv.textContent = "Invalid CRUD operation.";
+            }
+          } catch (error) {
+            resultDiv.textContent = `Error: ${error.message}`;
+          }
+        });
+    </script>
+  </body>
+</html>
