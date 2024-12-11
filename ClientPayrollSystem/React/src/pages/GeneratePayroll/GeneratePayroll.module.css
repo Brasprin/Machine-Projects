@@ -1,0 +1,75 @@
+.container {
+    font-family: 'JetBrains Mono';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.infoSection {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.formsSection {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 95%;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+#infoTitle {
+    padding-bottom:30px;
+    text-decoration:underline;
+    font-size:30px;
+}
+
+#savedMessage {
+    padding-bottom:24px;
+    font-size:14px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 8px 25px;
+    font-size: 16px;
+    border: none;
+    background-color: #4087be;
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #065999;
+}
+
+.resultSection {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 40px;
+    text-align: left;
+}

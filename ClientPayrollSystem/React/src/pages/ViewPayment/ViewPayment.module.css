@@ -1,0 +1,87 @@
+.tableContainer {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 2px rgb(124, 151, 169);
+    overflow: hidden;
+    padding: 10px;
+    background-color:#f2f2f2;
+  }
+
+
+.tableContainer table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 10px;
+}
+
+.tableContainer th, .tableContainer td {
+    padding: 10px;
+    white-space: nowrap; 
+
+}
+
+
+.tableContainer td {
+    font-family: "JetBrains Mono";
+    justify-self:center;
+
+}
+
+.tableContainer tr {
+    background-color: #f2f2f2;
+    font-size:16px;
+
+}
+
+.tableContainer td:last-child {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tableContainer button {
+    border:none;
+    font-family: "JetBrains Mono";
+    color:white;    
+    font-size:16px;
+    padding:10px;
+    border-radius:8px;
+    width:80%;
+    cursor:pointer;
+    text-align:center;
+
+}
+
+.edit button{
+    background-color:#383BD9;
+}
+
+.delete button{
+    background-color:#FF0000;
+}
+
+.total {
+    background-color:#ACCBE0;
+    border-radius:10px;
+    width:40%;
+    text-align:left;
+}
+
+.date {
+    font-weight:bold;
+    text-align:center;
+
+    width:10%;
+}
+
+.noRecord {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&family=Roboto:wght@100&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.settings {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Work Sans';
+}
+
+.settingsInner {
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    max-width:900px;
+    background-color:white;
+    display:grid;
+    grid-template-columns:auto auto;
+    border: 1px solid rgba(0, 0, 0);
+    border-radius: 10px;  
+}
+
+.closeBtn {
+    background-image: url('exit.svg');
+    background-size:contain;
+    background-repeat:no-repeat;
+    width: 52px;
+    height:52px;
+    justify-self:right;
+    border:none;
+    cursor:pointer;
+}
+
+.settingsTitle {
+    font-size:32px;
+    font-weight:bold;
+}
+
+.passHolder {
+    background-color: #c7dae8;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 2px 2px #c4c4c4;
+    font-size: 16px;
+    width: 400px;
+    height: 44px;
+}
+
+.menuItems {
+    list-style-type:none;
+    font-size:24px;
+}
+
+.save {
+    border: none;
+    justify-self:center;
+    height: 50px;
+    color:white;
+    background-color: #0088ca;
+    font-family: 'Work Sans';
+    text-align: center;
+    font-size: 16px;
+    border-radius: 20px;
+    width: 250px;
+    cursor: pointer;
+}
+
+.subtitle {
+    justify-self:center;
+    font-size:24px;
+    margin-bottom: 32px;
+    font-weight:bold;
+}
+
+.pass {
+    justify-self:center;
+    font-size: 16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.statusMessage {
+    font-size:12px;
+    color:red;
+}

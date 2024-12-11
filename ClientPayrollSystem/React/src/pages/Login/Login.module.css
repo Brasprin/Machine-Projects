@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    height: 100vh; 
+    background-image: url('background.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: black;
+    text-align: center;
+    opacity: 1;
+}   
+
+.rect {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-shadow: 0px 0px 10px #000000;
+    border-radius: 20px;
+    line-height: 20px;
+}
+
+
+.prompt {
+    font-family: 'JetBrains Mono';
+    font-weight: bold;
+    font-size: 32px;
+    text-shadow: 0px 3px 2px #c4c4c4;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding-top: 50px;
+    line-height: 50px;
+}
+
+.passwordHolder {
+    background-color: #c7dae8;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 2px 2px #c4c4c4;
+    font-family: 'JetBrains Mono';
+    text-align: center;
+    font-size: 24px;
+    width: 500px;
+    height: 50px;
+}
+
+.submitButton {
+    border: none;
+    height: 50px;
+    color:white;
+    background-color: #0088ca;
+    font-family: 'JetBrains Mono';
+    text-align: center;
+    font-size: 24px;
+    border-radius: 20px;
+    width: 250px;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #accbe0;
+}
+
+.errMessage {
+    color:red;
+}
