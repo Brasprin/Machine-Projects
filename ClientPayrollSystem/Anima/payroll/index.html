@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <script>
+        function printPay() {
+            let prevTotal = document.getElementById("total");
+            if (prevTotal) {
+                prevTotal.remove();
+            }
+
+
+            let overtime = parseFloat(document.getElementById("ot").value) || 0; // Default to 0 if NaN
+            let incentive = parseFloat(document.getElementById("incentive").value) || 0; // Default to 0 if NaN
+            let increase = parseFloat(document.getElementById("increase").value) || 0; // Default to 0 if NaN
+            let meal = parseFloat(document.getElementById("meal").value) || 0; // Default to 0 if NaN
+            let bday = parseFloat(document.getElementById("bday").value) || 0; // Default to 0 if NaN
+            let others = parseFloat(document.getElementById("others").value) || 0; // Default to 0 if NaN
+
+            // basic + OTdays*rate + etc.
+            let total = 8385 + overtime*645 + incentive + increase + meal + bday + others;
+           // const newElement = document.createElement('div');
+            //newElement.innerText = 'Total: ' + total;
+            //newElement.className = 'total';
+            //newElement.id = "total";
+    
+            const newBox = document.createElement('div');
+            newBox.className = "newBox";
+
+            const newline = document.createElement('hr');
+            newline.className = "line";
+
+            const newText = document.createElement('div');
+            newText.innerText = "Total: ";
+            newText.className = "newText";
+
+            const newGrayBox = document.createElement('div');
+            newGrayBox.className = "newGrayBox";
+            newGrayBox.innerText = total;
+
+            const newButton = document.createElement('div');
+            newButton.innerText = 'Email to Employee';
+            newButton.className = "newButton";
+            newButton.onclick = function() {
+                alert("TODO: send to employee");
+            };
+
+            const mid = document.getElementById('overlap');
+            mid.appendChild(newBox);      
+           // mid.appendChild(newElement);
+            mid.appendChild(newline);
+            mid.appendChild(newText);
+            mid.appendChild(newGrayBox);
+            mid.appendChild(newButton);
+
+
+
+
+        }
+
+
+    </script>
+
+
+
+
+    <div class="payroll">
+        <div class="div">
+            <div class="overlap" id="overlap">
+                <img class="image" src="img/image-4.png" />
+                <div class="rectangle"></div>
+                <div class="rectangle-2"></div>
+                <div class="rectangle-3"></div>
+
+                <div class="regular-hours">
+                    <div class="input-container">
+                        <label class="input-label">Overtime Days</label>
+                        <input id="ot" type="text" class="input-box" />
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Incentive</label>
+                        <input id="incentive" type="text" class="input-box" />
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Salary Increase</label>
+                        <input id="increase" type="text" class="input-box" />
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Meal Allow</label>
+                        <input id="meal" type="text" class="input-box" />
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Birthday Bonus</label>
+                        <input id="bday" type="text" class="input-box" />
+                    </div>
+                    <div class="input-container">
+                        <label class="input-label">Others</label>
+                        <input id="others" type="text" class="input-box" />
+                    </div>
+                </div>
+                <button class="rectangle-9" id="calc" onclick="printPay()">Calculate</button>
+
+
+                <p class="p">Input all the information needed</p>
+                <p class="text-wrapper-2" id="title">Generate Payroll</p>
+            </div>
+            <div class="overlap-group">
+                <button class="text-wrapper-3" onclick='window.location.href="../payroll-search/index.html"'>Payroll System</button>
+            </div>
+            <img class="img" src="img/rectangle-1.png" />
+            <div class="overlap-group-2">
+                <img class="image-2" src="img/image-2.png" />
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

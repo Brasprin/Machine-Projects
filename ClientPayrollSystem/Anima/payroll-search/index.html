@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="payroll-search">
+      <div class="div">
+        <div class="overlap">
+          <img class="image" src="img/image-4.png" />
+          <div class="rectangle"></div>
+          <div class="rectangle-2"></div>
+          <button class="clear" onClick="window.location.reload();">Clear</button>
+
+          <div class="rectangle-3"></div>
+          <div class="text-wrapper-2">Search</div>
+          <div class="rectangle-6"></div>
+          <div class="text-wrapper-3">Employee Lookup</div>
+          <p class="SEARCH-BY-employee">
+            <span class="text-wrapper-4">SEARCH BY: <br /></span>
+            <span class="text-wrapper-5"
+              ><br />Employee ID<br /><br />OR<br /><br />First
+              Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Last Name</span
+            >
+          </p>
+
+          <form id="search-form">
+            <input class="rectangle-7" type="text" id="id" name="id"><br>
+            <input class="rectangle-9" type="text" id="firstname" name="firstname"><br>
+            <input class="rectangle-8" type="text" id="lastname" name="lastname"><br>
+            <input class="rectangle-4" type="submit" value="Search">
+          </form>
+
+          <table class="rectangle-3" id="Table">
+            <tr>
+              <th>Email Address</th>
+              <th>Employee ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Date of Birth</th>
+              <th>Edit</th>
+            </tr>
+          </table>
+
+          <div class="rectangle-5"></div>
+          <div class="text-wrapper-7">Employees Found</div>
+        </div>
+        <div class="overlap-group">
+          <button class="text-wrapper-16" type="button" onclick="alert('Do something.')">Add Entry</button>
+        </div>
+        <img class="rectangle-13" src="img/rectangle-1.png" />
+        <div class="overlap-group-2">
+          <img class="icon-instagram" src="img/icon-instagram.png" />
+          <img class="icon-linkedin" src="img/icon-linkedin.png" />
+          <img class="icon-tiktok" src="img/icon-tiktok.png" />
+          <img class="icon-facebook" src="img/icon-facebook.png" />
+          <img class="image-2" src="img/image-2.png" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const employees = [
+        { email: 'email0@gmail.com', id: '0', firstName: 'firstname0', lastName: 'lastname0', dob: '07/23/1997' },
+        { email: 'email1@gmail.com', id: '1', firstName: 'firstname1', lastName: 'lastname1', dob: '08/12/1995' },
+        { email: 'email2@gmail.com', id: '2', firstName: 'firstname2', lastName: 'lastname2', dob: '09/15/1993' },
+        { email: 'email3@gmail.com', id: '3', firstName: 'firstname3', lastName: 'lastname3', dob: '10/10/1990' },
+        { email: 'email4@gmail.com', id: '4', firstName: 'firstname4', lastName: 'lastname4', dob: '11/05/1989' },
+      ];
+
+      const table = document.getElementById('Table');
+      const searchForm = document.getElementById('search-form');
+
+      function populateTable(data) {
+        table.innerHTML = `
+          <tr>
+            <th>Email Address</th>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Edit</th>
+          </tr>`;
+
+        data.forEach((employee) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${employee.email}</td>
+            <td>${employee.id}</td>
+            <td>${employee.firstName}</td>
+            <td>${employee.lastName}</td>
+            <td>${employee.dob}</td>
+            <td><img src="img/edit-5.svg" /></td>`;
+
+          row.addEventListener('click', function() {
+            // Action on row click - e.g., logging row data or navigating
+            const firstName = employee.firstName;
+            const lastName = employee.lastName;
+            window.location.href = `../payroll/index.html?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`;
+          });
+          table.appendChild(row);
+        });
+      }
+
+      populateTable(employees);
+
+      searchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const id = document.getElementById('id').value.toLowerCase();
+        const firstName = document.getElementById('firstname').value.toLowerCase();
+        const lastName = document.getElementById('lastname').value.toLowerCase();
+
+        const filteredEmployees = employees.filter((employee) => {
+          return (
+            (id && employee.id.toLowerCase().includes(id)) ||
+            (firstName && employee.firstName.toLowerCase().includes(firstName)) ||
+            (lastName && employee.lastName.toLowerCase().includes(lastName))
+          );
+        }); //toLowerCase() used to avoid case sensitivity
+
+        populateTable(filteredEmployees);
+      });
+    </script>
+  </body>
+</html>
+
