@@ -13,6 +13,6 @@
 10. LBYARCH (x86 Assembly Sequence Generator)
 11. LBYARCH (x86 Assembly to C Z Distance Calculation)
 12. STADVDB (MasterSlave and Concurrency Web Application)
-13. CSSWENG (Client Payroll System) (Group) Role: Scrum Master
+13. CSSWENG (Client Oriented Payroll System) (Group) Role: Scrum Master
 14. SOLLDA1 (Adidas Webstore Analytics)
 15. STINTSY (Predictive Modeling of Labor Force Data (2016))
