@@ -15,3 +15,4 @@
 12. STADVDB (MasterSlave and Concurrency Web Application)
 13. CSSWENG (Client Payroll System) (Group) Role: Scrum Master
 14. SOLLDA1 (Adidas Webstore Analytics)
+15. STINTSY (Predictive Modeling of Labor Force Data (2016))
