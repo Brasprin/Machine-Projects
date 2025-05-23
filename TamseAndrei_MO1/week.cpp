@@ -63,6 +63,10 @@ public:
         }
     }
 
+    static string formatString(int input, size_t width, bool alignRight = false) {
+        return formatString(to_string(input), width, alignRight);
+    }
+
     static string getCurrentDateTime() {
         time_t now = time(0);
         struct tm* timeinfo = localtime(&now);
@@ -115,29 +119,42 @@ private:
     string name;
     string driverVersion;
     string cudaVersion;
+    string driverModel;
+    string busId;
+    string displayActive;
+    std::optional<std::string> eccStatus;
     int temperature;
+    string perfState;
     int powerUsage;
     int powerLimit;
     int memoryUsed;
     int memoryTotal;
     int gpuUtilization;
-    int memoryUtilization;
+    string computeMode;
+    std::optional<std::string> migMode;
     vector<Process> processes;
 public:
     GPU(int _gpuId, string _name, string _driverVersion, string _cudaVersion,
-        int _temperature, int _powerUsage, int _powerLimit,
-        int _memoryUsed, int _memoryTotal, int _gpuUtilization, int _memoryUtilization)
+        string _driverModel, string _busId, string _displayActive, std::optional<std::string> _eccStatus,
+        string _perfState, int _temperature, int _powerUsage, int _powerLimit, int _memoryUsed, int _memoryTotal, 
+        int _gpuUtilization, string _computeMode, std::optional<std::string> _migMode)
         : gpuId(_gpuId)
         , name(_name)
         , driverVersion(_driverVersion)
         , cudaVersion(_cudaVersion)
+        , driverModel(_driverModel)
+        , busId(_busId)
+        , displayActive(_displayActive)
+        , eccStatus(_eccStatus)
+        , perfState(_perfState)
         , temperature(_temperature)
         , powerUsage(_powerUsage)
         , powerLimit(_powerLimit)
         , memoryUsed(_memoryUsed)
         , memoryTotal(_memoryTotal)
         , gpuUtilization(_gpuUtilization)
-        , memoryUtilization(_memoryUtilization){}
+        , computeMode(_computeMode)
+        , migMode(_migMode) {}
 
     void addProcess(const Process& process) {
         // sort order by PID
@@ -152,13 +169,36 @@ public:
     string getName() const { return name; }
     string getDriverVersion() const { return driverVersion; }
     string getCudaVersion() const { return cudaVersion; }
-    int getTemperature() const { return temperature; }
-    int getPowerUsage() const { return powerUsage; }
-    int getPowerLimit() const { return powerLimit; }
-    int getMemoryUsed() const { return memoryUsed; }
-    int getMemoryTotal() const { return memoryTotal; }
-    int getGpuUtilization() const { return gpuUtilization; }
-    int getMemoryUtilization() const { return memoryUtilization; }
+    string getDriverModel() const { return driverModel; }
+    string getBusId() const { return busId; }
+    string getDisplayActive() const { return displayActive; }
+    std::string getEccStatus() const {
+        return eccStatus.has_value() ? eccStatus.value() : "N/A";
+    }
+    std::string getTemperature() const { 
+        return std::to_string(temperature) + "C"; 
+    }
+    string getPerfState() const { return perfState; }
+    
+    std::string getPowerUsage() const { 
+        return std::to_string(powerUsage) + "W"; 
+    }
+    std::string getPowerLimit() const { 
+        return std::to_string(powerLimit) + "W"; 
+    }
+    std::string getMemoryUsed() const { 
+        return std::to_string(memoryUsed) + "MiB"; 
+    }
+    std::string getMemoryTotal() const { 
+        return std::to_string(memoryTotal) + "MiB"; 
+    }
+    std::string getGpuUtilization() const { 
+        return std::to_string(gpuUtilization) + "%"; 
+    }
+    string getComputeMode() const { return computeMode; }
+    std::string getMigMode() const {
+        return migMode.has_value() ? migMode.value() : "N/A";
+    }
     const vector<Process>& getProcesses() const { return processes; }
 };
 
@@ -166,6 +206,7 @@ class NvidiaDisplay {
 private:
     GPU gpu;
     Formatter console;
+    const string NVIDIA_SMI_VERSION = "572.83";
 
 public:
     NvidiaDisplay(const GPU& _gpu) : gpu(_gpu) {}
@@ -173,59 +214,102 @@ public:
     void display() {
         console.clearScreen();
         cout << Formatter::getCurrentDateTime() << endl;
-        // displayHeader();
+        displayHeader();
+        displayGpuInfo();
         displayProcessHeader();
-        displayProcessList(gpu);
+        displayProcessList();
     }
 
 private:
-    // void displayHeader() {
-    //         cout << "+-----------------------------------------------------------------------------+" << endl;
-    //         cout << "| NVIDIA-SMI " <<  
-    //                 << "            Driver Version: " << Formatter::formatString(gpu.getDriverVersion(), 10) 
-    //                 << "   CUDA: " << Formatter::formatString(gpu.getCudaVersion(), 5) << " |" << endl;
-    //         cout << "|-------------------------------+----------------------+----------------------|" << endl;
-    //         cout << "| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |" << endl;
-    //         cout << "| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |" << endl;
-    //         cout << "|                               |                      |               MIG M. |" << endl;
-    //         cout << "|===============================+======================+======================|" << endl;
-    // }
-
-
-
-
-    void displayProcessHeader() {
-        cout << "+-----------------------------------------------------------------------------+" << endl;
-        cout << "| Processes:                                                                  |" << endl;
-        cout << "|  GPU   GI   CI        PID   Type    Process name                 GPU Memory |" << endl;
-        cout << "|        ID   ID                                                   Usage      |" << endl;
-        cout << "|=============================================================================|" << endl;
+    void displayHeader() {
+            cout << "+-----------------------------------------------------------------------------------------+" << endl;
+            cout << "| NVIDIA-SMI " << Formatter::formatString(NVIDIA_SMI_VERSION, 23)
+                    << "Driver Version: " << Formatter::formatString(gpu.getDriverVersion(), 15) 
+                    << "CUDA VERSION: " << Formatter::formatString(gpu.getCudaVersion(), 8) << " |" << endl;
+            cout << "|-----------------------------------------+------------------------+----------------------+" << endl;
+            cout << "| GPU  Name                  Driver-Model | Bus-Id          Disp.A | Volatile Uncorr. ECC |" << endl;
+            cout << "| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |" << endl;
+            cout << "|                                         |                        |               MIG M. |" << endl;
+            cout << "|=========================================+========================+======================|" << endl;
     }
 
-    void displayProcessList(const GPU& gpu) {
+
+    void displayGpuInfo() {
+    // First line:
+    cout << "|" << Formatter::formatString(gpu.getGpuId(), 4, true) 
+        <<  Formatter::formatString(gpu.getName(), 28, true) 
+        <<  Formatter::formatString(gpu.getDriverModel(), 7, true) 
+        << Formatter::formatString("|", 3, true) 
+        << Formatter::formatString(gpu.getBusId(), 19, true)
+        << Formatter::formatString(gpu.getDisplayActive(), 4, true)
+        << Formatter::formatString("|", 2, true) 
+        << Formatter::formatString(gpu.getEccStatus(), 21, true) 
+        << Formatter::formatString("|", 2, true) 
+        << endl;
+
+    // Second linw:
+    cout << "|" << Formatter::formatString(gpu.getGpuId(), 4, true) 
+        << Formatter::formatString(gpu.getTemperature(), 6, true)
+        << Formatter::formatString(gpu.getPerfState(), 6, true)
+        << Formatter::formatString(gpu.getPowerUsage(), 16, true)
+        << Formatter::formatString("/", 2, true) 
+        << Formatter::formatString(gpu.getPowerLimit(), 6, true)
+        << Formatter::formatString("|", 2, true) 
+        << Formatter::formatString(gpu.getMemoryUsed(), 11, true)
+        << Formatter::formatString("/", 2, true) 
+        << Formatter::formatString(gpu.getMemoryTotal(), 10, true)
+        << Formatter::formatString("|", 2, true) 
+        << Formatter::formatString(gpu.getGpuUtilization(), 8, true)
+        << Formatter::formatString(gpu.getComputeMode(), 13, true)
+        << Formatter::formatString("|", 2, true) 
+        << endl;
+    // Third line:
+    cout << "|" << Formatter::formatString(" ", 40) 
+        << Formatter::formatString("|", 2, true) 
+        << Formatter::formatString(" ", 23) 
+        << Formatter::formatString("|", 2, true) 
+        << Formatter::formatString(gpu.getMigMode(), 21, true) 
+        << Formatter::formatString("|", 2, true) 
+        << endl;
+
+    cout << "+-----------------------------------------------------------------------------------------+" << endl;
+    }
+   
+
+    void displayProcessHeader() {
+        cout << "\n+-----------------------------------------------------------------------------------------+" << endl;
+        cout << "| Processes:                                                                              |" << endl;
+        cout << "|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |" << endl;
+        cout << "|        ID   ID                                                               Usage      |" << endl;
+        cout << "|=========================================================================================|" << endl;
+    }
+
+    void displayProcessList() {
         for (const auto& process : gpu.getProcesses()) {
-            cout << "|" << setw(5) << gpu.getGpuId()
-                << setw(6) << process.getGiIdString() 
-                << setw(6) << process.getCiIdString() 
-                << setw(10) << process.getPid() << "   " 
-                << Formatter::formatString(process.getType(), 4) 
-                << "   " << Formatter::formatString(process.getName(), 28) 
-                << "    " << setw(10) << process.getGpuMemoryUsageString() << " |" << endl;
+            cout << "|" << Formatter::formatString(gpu.getGpuId(), 5, true) 
+                << Formatter::formatString(process.getGiIdString(), 6, true) 
+                << Formatter::formatString(process.getCiIdString() , 5, true) 
+                << Formatter::formatString(process.getPid() , 16, true)
+                << Formatter::formatString(process.getType() , 7, true) 
+                << setw(35) << Formatter::formatString(process.getName(), 32) 
+                << setw(15) << Formatter::formatString(process.getGpuMemoryUsageString(), 10)  
+                << "|" << endl;
         }
-        cout << "+-----------------------------------------------------------------------------+" << endl;
+        cout << "+-----------------------------------------------------------------------------------------+" << endl;
     }
 };
 
 int main() {
 
-    GPU gpu(0, "NVIDIA GeForce RTX 3080", "535.104.05", "12.2", 45, 220, 320, 2048, 10240, 85, 70);
+    GPU gpu(0, "NVIDIA GeForce RTX 3060 Ti", "572.83 ", "12.2", "WDDM","00000000:2B:00.0", "On", 
+         std::nullopt, "P5", 45, 220, 320, 2048, 10240, 85, "Default", std::nullopt);
     
 
-    gpu.addProcess(Process(std::nullopt, std::nullopt, 12145, "C", "python", std::nullopt));
-    gpu.addProcess(Process(std::nullopt, std::nullopt, 23456, "C+", "jupyter-notebook", 980));
-    gpu.addProcess(Process(std::nullopt, std::nullopt, 34567, "G", "chrome", 678));
-    gpu.addProcess(Process(std::nullopt, std::nullopt, 45678, "C", "pytorch_trainer.py", 1320));
-    gpu.addProcess(Process(std::nullopt, std::nullopt, 56789, "C+", "very_long_process_name_that_exceeds_display_width", 998));
+    gpu.addProcess(Process(std::nullopt, std::nullopt, 12145, "C+G", "python", std::nullopt));
+    gpu.addProcess(Process(std::nullopt, std::nullopt, 23456, "C+G", "jupyter-notebook", 980));
+    gpu.addProcess(Process(std::nullopt, std::nullopt, 34567, "C+G", "chrome", 678));
+    gpu.addProcess(Process(std::nullopt, std::nullopt, 45678, "C+G", "pytorch_trainer.py", 13200));
+    gpu.addProcess(Process(std::nullopt, std::nullopt, 56789, "C+G", "very_long_process_name_that_exceeds_display_width", 998));
 
     NvidiaDisplay display (gpu);  
     display.display(); 
