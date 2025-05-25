@@ -1,3 +1,4 @@
+// Andrei Tamse || CSOPESY S22
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -5,6 +6,7 @@
 #include <ctime>
 #include <windows.h>
 #include <optional>
+#include <algorithm>
 
 using namespace std;
 
@@ -76,6 +78,7 @@ public:
     }
 };
 
+
 class Process {
 private:
     int pid;
@@ -84,6 +87,7 @@ private:
     string type;
     string name;
     std::optional<int> gpuMemoryUsage;
+    
 
 public:
     Process(std::optional<int> _giId, std::optional<int> _ciId, 
@@ -157,14 +161,9 @@ public:
         , migMode(_migMode) {}
 
     void addProcess(const Process& process) {
-        // sort order by PID
-        auto iter = processes.begin();
-        while (iter != processes.end() && iter->getPid() < process.getPid()) {
-            ++iter;
-        }
-        processes.insert(iter, process);
+        processes.push_back(process); 
     }
-
+    
     int getGpuId() const { return gpuId; }
     string getName() const { return name; }
     string getDriverVersion() const { return driverVersion; }
@@ -285,18 +284,26 @@ private:
     }
 
     void displayProcessList() {
-        for (const auto& process : gpu.getProcesses()) {
+        // Make a copy of the list and sort it by PID
+        std::vector<Process> sortedProcesses = gpu.getProcesses();
+        std::sort(sortedProcesses.begin(), sortedProcesses.end(), [](const Process& a, const Process& b) {
+            return a.getPid() < b.getPid();
+        });
+    
+        for (const auto& process : sortedProcesses) {
             cout << "|" << Formatter::formatString(gpu.getGpuId(), 5, true) 
-                << Formatter::formatString(process.getGiIdString(), 6, true) 
-                << Formatter::formatString(process.getCiIdString() , 5, true) 
-                << Formatter::formatString(process.getPid() , 16, true)
-                << Formatter::formatString(process.getType() , 7, true) 
-                << setw(35) << Formatter::formatString(process.getName(), 32) 
-                << setw(15) << Formatter::formatString(process.getGpuMemoryUsageString(), 10)  
-                << "|" << endl;
+                 << Formatter::formatString(process.getGiIdString(), 6, true) 
+                 << Formatter::formatString(process.getCiIdString(), 5, true) 
+                 << Formatter::formatString(process.getPid(), 16, true)
+                 << Formatter::formatString(process.getType(), 7, true) 
+                 << setw(35) << Formatter::formatString(process.getName(), 32) 
+                 << setw(15) << Formatter::formatString(process.getGpuMemoryUsageString(), 10)  
+                 << "|" << endl;
         }
+    
         cout << "+-----------------------------------------------------------------------------------------+" << endl;
     }
+    
 };
 
 int main() {
@@ -313,5 +320,6 @@ int main() {
 
     NvidiaDisplay display (gpu);  
     display.display(); 
+
     return 0;
 }
