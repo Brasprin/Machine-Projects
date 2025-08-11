@@ -17,5 +17,5 @@
 13. CSSWENG (Client Oriented Payroll System) (Group) Role: Scrum Master
 14. SOLLDA1 (Adidas Webstore Analytics)
 15. STINTSY (Predictive Modeling of Labor Force Data (2016))
-16. STSWENG (Payroll System (Group) Role: Developer)
+16. STSWENG (Payroll System Devops (Group) Role: Developer)
 17. CSOPESY (Command-Line Operating System Project)
