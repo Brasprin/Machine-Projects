@@ -1,0 +1,53 @@
+@import '/src/pages/_sidebar/Sidebar.module.css';
+@import '/src/pages/_header/Header.module.css';
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+.wrapper {
+    display: flex; 
+}
+
+.mainContent {
+    padding-left: calc(var(--sidebar-width) + 24px);
+    padding-top: calc(var(--header-height) + 24px);
+    background-color: #ACCBE0;
+    position: absolute;   
+    flex: 1;       
+    width: 100vw;       
+    min-height: 100vh;      
+    z-index: -2;
+    overflow-y: auto;
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+  overflow-y: auto;
+}
+.title {
+    font-family: 'JetBrains Mono';
+    background-color: #015FA9;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    color:white;
+    font-weight:lighter;
+    box-shadow: 0px 3px 2px rgb(124, 151, 169);
+    margin: 0;
+}
+
+.fadeOut {
+    animation: fadeOut 3s forwards;
+}
+
+.opacity0 {
+    opacity: 0;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

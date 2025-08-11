@@ -1,0 +1,68 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    },
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/admin/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/employee",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/addEmployee",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/editEmployee/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/getEmployeeDetails/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/payments/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/getPayment/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/deletePayment/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/changePassword",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/getCompanyRates",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/updateCompanyRates",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ]
+}

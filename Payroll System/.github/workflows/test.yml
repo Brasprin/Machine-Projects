@@ -1,0 +1,60 @@
+name: Run React App Tests
+
+on:
+  push:
+    branches: [ qa-testing ]
+  pull_request:
+    branches: [ main, qa-testing ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: React
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Robot Framework & SeleniumLibrary
+        run: |
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+          pip install robotframework-browser
+          pip install webdriver-manager
+
+      - name: Run Jest Unit Tests
+        run: npm test -- --watchAll=false
+        working-directory: React
+        if: false  
+
+      - name: Run Robot Framework Tests
+        run: npm run test:robot
+        working-directory: React
+        if: false
+
+      - name: Run All Tests Locally (start app + run tests + teardown)
+        run: npm run test:allGHLocal
+        working-directory: React
+        if: true
+
+      # Tests for when app is deployed
+      - name: Run All Tests (Jest + Robot)
+        run: npm run test:all
+        working-directory: React
+        if: false

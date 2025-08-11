@@ -1,0 +1,35 @@
+@import '/src/pages/_sidebar/Sidebar.module.css';
+
+:root {
+    --header-height: 85px;
+}
+
+.background {
+    position:fixed;
+    background-color: #0088CA;
+    padding-left: var(--sidebar-width);
+    display:flex;
+    flex-direction: row;
+    width: calc(100vw - var(--sidebar-width));
+    height: var(--header-height);
+    padding-top: 15px;
+    z-index: -1;
+    justify-content:space-between;
+}
+
+.logo {
+    height: 70px;
+}
+
+.setting {
+    margin-right: 50px;
+    height:60px;
+    cursor:pointer;
+    border-radius:100px;
+    padding:2px;
+}
+
+.setting:hover {
+    background-color:#0d58ba;
+}
+

@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+.background {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    text-align: center;
+    opacity: 1;
+}
+
+.rect {
+    background-color: #f5f5f4;
+    opacity:75%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    /* padding-top:100px; */
+    /* padding-bottom: 100px; */
+    /* padding-left: 50px; */
+    padding-right: 50px;
+    box-shadow: 0px 0px 10px #000000;
+    border-radius: 20px;
+    line-height: 20px;
+    max-width: 1200px;
+    max-height: 1200px;
+}
+
+.leftrect{
+  opacity:100%;
+  flex: 1;
+  max-width:80%;
+  overflow: hidden;
+  border-radius: 20px 0 0 20px;
+  position: relative;
+ }
+
+
+.leftrect img{
+  display: block;
+  width: auto;
+  object-fit: cover;
+  height: 700px;
+  transform: translate(-30%);
+  opacity: 150%;
+}
+.rect > .rightrect{
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  justify-content:center;
+}
+
+.prompt {
+    font-family: 'JetBrains Mono';
+    font-weight: bold;
+    font-size: 32px;
+    text-shadow: 0px 3px 2px #c4c4c4;
+}
+
+.formSection {
+    opacity:150%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    line-height: 50px;
+    gap: 10px;
+}
+
+.passwordHolder {
+    background-color: #c7dae8;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 2px 2px #c4c4c4;
+    font-family: 'JetBrains Mono';
+    text-align: center;
+    font-size: 24px;
+    width: 500px;
+    height: 50px;
+}
+
+.usernameHolder {
+    background-color: #c7dae8;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 2px 2px #c4c4c4;
+    font-family: 'JetBrains Mono';
+    text-align: center;
+    font-size: 24px;
+    width: 500px;
+    height: 50px;
+}
+
+.submitButton {
+    border: none;
+    height: 50px;
+    color:white;
+    background-color: #55A9CB;
+    font-family: 'JetBrains Mono';
+    text-align: center;
+    font-size: 24px;
+    border-radius: 20px;
+    width: 250px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+
+.submitButton:hover {
+    background-color: #26647D;
+}
+
+.errMessage {
+    color:red;
+}

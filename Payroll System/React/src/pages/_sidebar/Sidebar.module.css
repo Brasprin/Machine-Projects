@@ -1,0 +1,108 @@
+:root {
+    --sidebar-width: 82px; 
+}
+
+.background {
+    background-color: #051B32;
+    width: --sidebar-width;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    position:fixed;
+}
+
+.content {
+    width: 70px;
+    margin-top: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: ease-in-out all .2s;
+}
+
+.background button {
+    background-size:contain;
+    background-repeat:no-repeat;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: #051B32;
+    color: #fff;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.menuButton {
+    background-image: url('home.svg');
+}
+
+.defaButton {
+    background-image: url('graph.svg');
+}
+
+.histButton {
+    background-image: url('hist.svg');
+}
+
+.calcButton {
+    background-image: url('calc.svg');
+}
+
+.prevButton {
+    background-image: url('prev.svg');
+}
+
+.logoutButton {
+    background-image: url('logout.svg');
+}
+
+.addButton{
+    background-image: url('add.svg');
+}
+.editButton{
+    background-image: url('edit.svg');
+}
+.iconGroup {
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    text-align: center;
+}
+
+.label {
+    font-family: 'JetBrains Mono';
+    font-size:16px;
+    opacity: 0;
+    margin-left: 50px;
+    transition: ease-in-out all 0.3s;
+    color:white;
+    visibility:hidden;
+    padding: 4px;
+    /* padding-left:2px; */
+    border-radius:10px;
+    text-align:left;
+    /* padding-top:20px; */
+    position:absolute;
+    width:180px;
+    background-color: transparent;
+}
+
+.content:hover {
+    width: 250px;
+}
+
+.content:hover .label {
+    opacity: 1;
+
+    visibility:visible; 
+ 
+}
+
+.label:hover{
+
+background-color: #F0B9A8;
+transform: translateX(5px);
+transition: all 0.225s ease-in-out;
+}
