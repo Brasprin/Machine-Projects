@@ -1,5 +1,6 @@
-# Machine-Projects that I worked on during College
+# Personal Projects
 
+# Machine-Projects that I worked on during College
 
 1. CCPROG1 (Minipoly)
 2. CCPROG2 (Shopping Machine)
@@ -16,3 +17,5 @@
 13. CSSWENG (Client Oriented Payroll System) (Group) Role: Scrum Master
 14. SOLLDA1 (Adidas Webstore Analytics)
 15. STINTSY (Predictive Modeling of Labor Force Data (2016))
+16. STSWENG (Payroll System (Group) Role: Developer)
+17. CSOPESY (Command-Line Operating System Project)
