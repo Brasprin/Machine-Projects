@@ -13,9 +13,10 @@
 9. CCAPDEV (Laboratory Reservation System) (Group)
 10. LBYARCH (x86 Assembly Sequence Generator)
 11. LBYARCH (x86 Assembly to C Z Distance Calculation)
-12. STADVDB (MasterSlave and Concurrency Web Application)
-13. CSSWENG (Client Oriented Payroll System) (Group) Role: Scrum Master
-14. SOLLDA1 (Adidas Webstore Analytics)
-15. STINTSY (Predictive Modeling of Labor Force Data (2016))
-16. STSWENG (Payroll System Devops (Group) Role: Developer)
-17. CSOPESY (Command-Line Operating System Project)
+12. STADVDB (Steam Games Business Intelligence & Data Warehouse Analysis)
+13. STADVDB (MasterSlave and Concurrency Web Application)
+14. CSSWENG (Client Oriented Payroll System) (Group) Role: Scrum Master
+15. SOLLDA1 (Adidas Webstore Analytics)
+16. STINTSY (Predictive Modeling of Labor Force Data (2016))
+17. STSWENG (Payroll System Devops (Group) Role: Developer)
+18. CSOPESY (Command-Line Operating System Project)
