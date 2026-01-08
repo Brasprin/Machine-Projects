@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="10.5.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="10.5.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="10.5.000" expanded="true" height="68" name="Read CSV" width="90" x="45" y="34">
+        <parameter key="csv_file" value="C:/Users/Andrei/Downloads/MC01/games_cleaned.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value="yyyy-MM-dd"/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Asia/Taipei"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="windows-1252"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="appid.true.integer.attribute"/>
+          <parameter key="1" value="name.true.polynominal.attribute"/>
+          <parameter key="2" value="release_date.true.polynominal.attribute"/>
+          <parameter key="3" value="estimated_owners.true.polynominal.attribute"/>
+          <parameter key="4" value="peak_ccu.true.integer.attribute"/>
+          <parameter key="5" value="required_age.true.integer.attribute"/>
+          <parameter key="6" value="price.true.real.attribute"/>
+          <parameter key="7" value="discount.true.integer.attribute"/>
+          <parameter key="8" value="dlc_count.true.integer.attribute"/>
+          <parameter key="9" value="about.true.polynominal.attribute"/>
+          <parameter key="10" value="supported_languages.true.polynominal.attribute"/>
+          <parameter key="11" value="fullaudio_languages.true.polynominal.attribute"/>
+          <parameter key="12" value="header_image.true.polynominal.attribute"/>
+          <parameter key="13" value="support_email.true.polynominal.attribute"/>
+          <parameter key="14" value="windows.true.polynominal.attribute"/>
+          <parameter key="15" value="mac.true.polynominal.attribute"/>
+          <parameter key="16" value="linux.true.polynominal.attribute"/>
+          <parameter key="17" value="metacritic_score.true.integer.attribute"/>
+          <parameter key="18" value="user_score.true.integer.attribute"/>
+          <parameter key="19" value="positive.true.integer.attribute"/>
+          <parameter key="20" value="negative.true.integer.attribute"/>
+          <parameter key="21" value="achievements.true.integer.attribute"/>
+          <parameter key="22" value="recommendations.true.integer.attribute"/>
+          <parameter key="23" value="avgplaytime_forever.true.integer.attribute"/>
+          <parameter key="24" value="avgplaytime_twoweeks.true.integer.attribute"/>
+          <parameter key="25" value="medplaytime_forever.true.integer.attribute"/>
+          <parameter key="26" value="medplaytime_twoweeks.true.integer.attribute"/>
+          <parameter key="27" value="developers.true.polynominal.attribute"/>
+          <parameter key="28" value="publishers.true.polynominal.attribute"/>
+          <parameter key="29" value="categories.true.polynominal.attribute"/>
+          <parameter key="30" value="genres.true.polynominal.attribute"/>
+          <parameter key="31" value="tags.true.polynominal.attribute"/>
+          <parameter key="32" value="screenshots.true.polynominal.attribute"/>
+          <parameter key="33" value="movies.true.polynominal.attribute"/>
+          <parameter key="34" value="releasedate_cleaned.true.date.attribute"/>
+          <parameter key="35" value="os.true.polynominal.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (6)" width="90" x="246" y="34">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞publishers"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (7)" width="90" x="380" y="34"/>
+      <operator activated="true" class="aggregate" compatibility="10.5.000" expanded="true" height="82" name="Aggregate (7)" width="90" x="514" y="34">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes"/>
+        <parameter key="group_by_attributes" value="publishers"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:generate_id" compatibility="10.5.000" expanded="true" height="82" name="Generate ID (2)" width="90" x="648" y="34">
+        <parameter key="create_nominal_ids" value="false"/>
+        <parameter key="offset" value="0"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="10.5.000" expanded="true" height="82" name="Rename (4)" width="90" x="782" y="34">
+        <list key="rename attributes">
+          <parameter key="id" value="publisher_id"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join" width="90" x="782" y="136">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="publishers" value="publishers"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="remove_duplicates" compatibility="10.5.000" expanded="true" height="103" name="Remove Duplicates" width="90" x="916" y="136">
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="treat_missing_values_as_duplicates" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply" width="90" x="1050" y="136"/>
+      <operator activated="true" class="jdbc_connectors:write_database" compatibility="10.5.000" expanded="true" height="82" name="Write Database (7)" width="90" x="1184" y="136">
+        <parameter key="define_connection" value="repository"/>
+        <parameter key="connection_entry" value="//Local Repository/Connections/stadvdb"/>
+        <parameter key="database_system" value="MySQL"/>
+        <parameter key="use_default_schema" value="true"/>
+        <parameter key="table_name" value="dim_publishers"/>
+        <parameter key="overwrite_mode" value="append"/>
+        <parameter key="set_default_varchar_length" value="false"/>
+        <parameter key="default_varchar_length" value="128"/>
+        <parameter key="add_generated_primary_keys" value="false"/>
+        <parameter key="db_key_attribute_name" value="generated_primary_key"/>
+        <parameter key="batch_size" value="100"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (16)" width="90" x="246" y="187">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid␞publishers"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (2)" width="90" x="1184" y="238">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="publishers" value="publishers"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (15)" width="90" x="1318" y="238">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞publisher_id␞appid"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (14)" width="90" x="246" y="289">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid␞avgplaytime_forever␞avgplaytime_twoweeks␞discount␞dlc_count␞estimated_owners␞fullaudio_languages␞medplaytime_forever␞medplaytime_twoweeks␞metacritic_score␞name␞negative␞peak_ccu␞positive␞price␞releasedate_cleaned␞supported_languages␞user_score␞recommendations"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="10.5.000" expanded="true" height="82" name="Rename (2)" width="90" x="1184" y="340">
+        <list key="rename attributes">
+          <parameter key="positive" value="positive_reviews"/>
+          <parameter key="negative" value="negative_reviews"/>
+          <parameter key="releasedate_cleaned" value="release_date_cleaned"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (3)" width="90" x="1318" y="340">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (17)" width="90" x="1452" y="340">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid␞avgplaytime_forever␞avgplaytime_twoweeks␞discount␞dlc_count␞estimated_owners␞fullaudio_languages␞medplaytime_forever␞medplaytime_twoweeks␞metacritic_score␞name␞negative_reviews␞peak_ccu␞positive_reviews␞price␞publisher_id␞recommendations␞release_date_cleaned␞supported_languages␞user_score"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (2)" width="90" x="246" y="442">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞categories"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (8)" width="90" x="380" y="442"/>
+      <operator activated="true" class="aggregate" compatibility="10.5.000" expanded="true" height="82" name="Aggregate" width="90" x="514" y="442">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes"/>
+        <parameter key="group_by_attributes" value="categories"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:generate_id" compatibility="10.5.000" expanded="true" height="82" name="Generate ID" width="90" x="648" y="442">
+        <parameter key="create_nominal_ids" value="false"/>
+        <parameter key="offset" value="0"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="10.5.000" expanded="true" height="82" name="Rename" width="90" x="782" y="442">
+        <list key="rename attributes">
+          <parameter key="id" value="category_id"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (4)" width="90" x="782" y="544">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="categories" value="categories"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="remove_duplicates" compatibility="10.5.000" expanded="true" height="103" name="Remove Duplicates (2)" width="90" x="916" y="544">
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="treat_missing_values_as_duplicates" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (2)" width="90" x="1050" y="544"/>
+      <operator activated="true" class="jdbc_connectors:write_database" compatibility="10.5.000" expanded="true" height="82" name="Write Database (2)" width="90" x="1184" y="544">
+        <parameter key="define_connection" value="repository"/>
+        <parameter key="connection_entry" value="//Local Repository/Connections/stadvdb"/>
+        <parameter key="database_system" value="MySQL"/>
+        <parameter key="use_default_schema" value="true"/>
+        <parameter key="table_name" value="dim_categories"/>
+        <parameter key="overwrite_mode" value="append"/>
+        <parameter key="set_default_varchar_length" value="false"/>
+        <parameter key="default_varchar_length" value="128"/>
+        <parameter key="add_generated_primary_keys" value="false"/>
+        <parameter key="db_key_attribute_name" value="generated_primary_key"/>
+        <parameter key="batch_size" value="100"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (3)" width="90" x="246" y="595">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid␞categories"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (5)" width="90" x="1184" y="646">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="categories" value="categories"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (18)" width="90" x="1318" y="646">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid␞category_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (20)" width="90" x="246" y="697">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (4)" width="90" x="246" y="850">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞developers"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (9)" width="90" x="380" y="850"/>
+      <operator activated="true" class="aggregate" compatibility="10.5.000" expanded="true" height="82" name="Aggregate (2)" width="90" x="514" y="850">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes"/>
+        <parameter key="group_by_attributes" value="developers"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:generate_id" compatibility="10.5.000" expanded="true" height="82" name="Generate ID (3)" width="90" x="648" y="850">
+        <parameter key="create_nominal_ids" value="false"/>
+        <parameter key="offset" value="0"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="10.5.000" expanded="true" height="82" name="Rename (3)" width="90" x="782" y="850">
+        <list key="rename attributes">
+          <parameter key="id" value="developer_id"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (6)" width="90" x="1318" y="748">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (19)" width="90" x="1452" y="748">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="appid␞category_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="10.5.000" expanded="true" height="82" name="Set Role" width="90" x="1720" y="799">
+        <list key="set_roles">
+          <parameter key="category_id" value="regular"/>
+        </list>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (8)" width="90" x="782" y="952">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="developers" value="developers"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="remove_duplicates" compatibility="10.5.000" expanded="true" height="103" name="Remove Duplicates (3)" width="90" x="916" y="952">
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="treat_missing_values_as_duplicates" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (3)" width="90" x="1050" y="952"/>
+      <operator activated="true" class="jdbc_connectors:write_database" compatibility="10.5.000" expanded="true" height="82" name="Write Database (4)" width="90" x="1184" y="952">
+        <parameter key="define_connection" value="repository"/>
+        <parameter key="connection_entry" value="//Local Repository/Connections/stadvdb"/>
+        <parameter key="database_system" value="MySQL"/>
+        <parameter key="use_default_schema" value="true"/>
+        <parameter key="table_name" value="dim_developers"/>
+        <parameter key="overwrite_mode" value="append"/>
+        <parameter key="set_default_varchar_length" value="false"/>
+        <parameter key="default_varchar_length" value="128"/>
+        <parameter key="add_generated_primary_keys" value="false"/>
+        <parameter key="db_key_attribute_name" value="generated_primary_key"/>
+        <parameter key="batch_size" value="100"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (23)" width="90" x="246" y="1003">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞developers␞appid"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (9)" width="90" x="1184" y="1054">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="developers" value="developers"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (24)" width="90" x="1318" y="1054">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="developer_id␞appid"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (25)" width="90" x="246" y="1105">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (10)" width="90" x="1318" y="1156">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (26)" width="90" x="1452" y="1156">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="appid␞developer_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="10.5.000" expanded="true" height="82" name="Set Role (2)" width="90" x="1653" y="1207">
+        <list key="set_roles">
+          <parameter key="developer_id" value="regular"/>
+        </list>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (5)" width="90" x="246" y="1258">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞os"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (10)" width="90" x="380" y="1258"/>
+      <operator activated="true" class="aggregate" compatibility="10.5.000" expanded="true" height="82" name="Aggregate (3)" width="90" x="514" y="1258">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes"/>
+        <parameter key="group_by_attributes" value="os"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:generate_id" compatibility="10.5.000" expanded="true" height="82" name="Generate ID (4)" width="90" x="648" y="1258">
+        <parameter key="create_nominal_ids" value="false"/>
+        <parameter key="offset" value="0"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="10.5.000" expanded="true" height="82" name="Rename (5)" width="90" x="782" y="1258">
+        <list key="rename attributes">
+          <parameter key="id" value="os_id"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (12)" width="90" x="782" y="1360">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="os" value="os"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="remove_duplicates" compatibility="10.5.000" expanded="true" height="103" name="Remove Duplicates (4)" width="90" x="916" y="1360">
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="treat_missing_values_as_duplicates" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (4)" width="90" x="1050" y="1360"/>
+      <operator activated="true" class="jdbc_connectors:write_database" compatibility="10.5.000" expanded="true" height="82" name="Write Database (8)" width="90" x="1184" y="1360">
+        <parameter key="define_connection" value="repository"/>
+        <parameter key="connection_entry" value="//Local Repository/Connections/stadvdb"/>
+        <parameter key="database_system" value="MySQL"/>
+        <parameter key="use_default_schema" value="true"/>
+        <parameter key="table_name" value="dim_os"/>
+        <parameter key="overwrite_mode" value="append"/>
+        <parameter key="set_default_varchar_length" value="false"/>
+        <parameter key="default_varchar_length" value="128"/>
+        <parameter key="add_generated_primary_keys" value="false"/>
+        <parameter key="db_key_attribute_name" value="generated_primary_key"/>
+        <parameter key="batch_size" value="100"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (28)" width="90" x="246" y="1411">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞os␞appid"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (13)" width="90" x="1184" y="1462">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="os" value="os"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (29)" width="90" x="1318" y="1462">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="appid␞os_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (30)" width="90" x="246" y="1513">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞os␞appid"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (14)" width="90" x="1318" y="1564">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (31)" width="90" x="1452" y="1564">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="appid␞os_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="10.5.000" expanded="true" height="82" name="Set Role (3)" width="90" x="1653" y="1564">
+        <list key="set_roles">
+          <parameter key="os_id" value="regular"/>
+        </list>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (8)" width="90" x="246" y="1666">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞genres"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (11)" width="90" x="380" y="1666"/>
+      <operator activated="true" class="aggregate" compatibility="10.5.000" expanded="true" height="82" name="Aggregate (4)" width="90" x="514" y="1666">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes"/>
+        <parameter key="group_by_attributes" value="genres"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:generate_id" compatibility="10.5.000" expanded="true" height="82" name="Generate ID (5)" width="90" x="648" y="1666">
+        <parameter key="create_nominal_ids" value="false"/>
+        <parameter key="offset" value="0"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="10.5.000" expanded="true" height="82" name="Rename (8)" width="90" x="782" y="1666">
+        <list key="rename attributes">
+          <parameter key="id" value="genre_id"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (16)" width="90" x="782" y="1768">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="genres" value="genres"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="remove_duplicates" compatibility="10.5.000" expanded="true" height="103" name="Remove Duplicates (5)" width="90" x="916" y="1768">
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="treat_missing_values_as_duplicates" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="103" name="Multiply (5)" width="90" x="1050" y="1768"/>
+      <operator activated="true" class="jdbc_connectors:write_database" compatibility="10.5.000" expanded="true" height="82" name="Write Database (15)" width="90" x="1184" y="1768">
+        <parameter key="define_connection" value="repository"/>
+        <parameter key="connection_entry" value="//Local Repository/Connections/stadvdb"/>
+        <parameter key="database_system" value="MySQL"/>
+        <parameter key="use_default_schema" value="true"/>
+        <parameter key="table_name" value="dim_genres"/>
+        <parameter key="overwrite_mode" value="append"/>
+        <parameter key="set_default_varchar_length" value="false"/>
+        <parameter key="default_varchar_length" value="128"/>
+        <parameter key="add_generated_primary_keys" value="false"/>
+        <parameter key="db_key_attribute_name" value="generated_primary_key"/>
+        <parameter key="batch_size" value="100"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (33)" width="90" x="246" y="1819">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid␞genres"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (17)" width="90" x="1184" y="1870">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="genres" value="genres"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (32)" width="90" x="1318" y="1870">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="appid␞genre_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (34)" width="90" x="246" y="1921">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="␞appid␞genres"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (18)" width="90" x="1318" y="1972">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (35)" width="90" x="1452" y="1972">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="appid␞genre_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="10.5.000" expanded="true" height="82" name="Set Role (4)" width="90" x="1653" y="1972">
+        <list key="set_roles">
+          <parameter key="genre_id" value="regular"/>
+        </list>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (7)" width="90" x="1921" y="748">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (11)" width="90" x="1787" y="1156">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (15)" width="90" x="1787" y="1513">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="10.5.000" expanded="true" height="82" name="Join (19)" width="90" x="1787" y="1921">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="appid" value="appid"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (21)" width="90" x="2591" y="1156">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="appid␞avgplaytime_forever␞avgplaytime_twoweeks␞category_id␞developer_id␞estimated_owners␞genre_id␞medplaytime_forever␞medplaytime_twoweeks␞metacritic_score␞name␞negative_reviews␞os_id␞peak_ccu␞positive_reviews␞price␞publisher_id␞recommendations␞release_date_cleaned␞tag_id"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="jdbc_connectors:write_database" compatibility="10.5.000" expanded="true" height="82" name="Write Database" width="90" x="2725" y="1156">
+        <parameter key="define_connection" value="repository"/>
+        <parameter key="connection_entry" value="//Local Repository/Connections/stadvdb"/>
+        <parameter key="database_system" value="MySQL"/>
+        <parameter key="use_default_schema" value="true"/>
+        <parameter key="table_name" value="fact_steam_games"/>
+        <parameter key="overwrite_mode" value="append"/>
+        <parameter key="set_default_varchar_length" value="false"/>
+        <parameter key="default_varchar_length" value="128"/>
+        <parameter key="add_generated_primary_keys" value="false"/>
+        <parameter key="db_key_attribute_name" value="generated_primary_key"/>
+        <parameter key="batch_size" value="100"/>
+      </operator>
+      <connect from_op="Read CSV" from_port="output" to_op="Select Attributes (6)" to_port="example set input"/>
+      <connect from_op="Select Attributes (6)" from_port="example set output" to_op="Multiply (7)" to_port="input"/>
+      <connect from_op="Select Attributes (6)" from_port="original" to_op="Select Attributes (16)" to_port="example set input"/>
+      <connect from_op="Multiply (7)" from_port="output 1" to_op="Aggregate (7)" to_port="example set input"/>
+      <connect from_op="Multiply (7)" from_port="output 2" to_op="Join" to_port="right"/>
+      <connect from_op="Aggregate (7)" from_port="example set output" to_op="Generate ID (2)" to_port="example set input"/>
+      <connect from_op="Generate ID (2)" from_port="example set output" to_op="Rename (4)" to_port="example set input"/>
+      <connect from_op="Rename (4)" from_port="example set output" to_op="Join" to_port="left"/>
+      <connect from_op="Join" from_port="join" to_op="Remove Duplicates" to_port="example set input"/>
+      <connect from_op="Remove Duplicates" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Write Database (7)" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Join (2)" to_port="left"/>
+      <connect from_op="Write Database (7)" from_port="through" to_port="result 1"/>
+      <connect from_op="Select Attributes (16)" from_port="example set output" to_op="Join (2)" to_port="right"/>
+      <connect from_op="Select Attributes (16)" from_port="original" to_op="Select Attributes (14)" to_port="example set input"/>
+      <connect from_op="Join (2)" from_port="join" to_op="Select Attributes (15)" to_port="example set input"/>
+      <connect from_op="Select Attributes (15)" from_port="example set output" to_op="Join (3)" to_port="left"/>
+      <connect from_op="Select Attributes (14)" from_port="example set output" to_op="Rename (2)" to_port="example set input"/>
+      <connect from_op="Select Attributes (14)" from_port="original" to_op="Select Attributes (2)" to_port="example set input"/>
+      <connect from_op="Rename (2)" from_port="example set output" to_op="Join (3)" to_port="right"/>
+      <connect from_op="Join (3)" from_port="join" to_op="Select Attributes (17)" to_port="example set input"/>
+      <connect from_op="Select Attributes (17)" from_port="example set output" to_op="Join (7)" to_port="left"/>
+      <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Multiply (8)" to_port="input"/>
+      <connect from_op="Select Attributes (2)" from_port="original" to_op="Select Attributes (3)" to_port="example set input"/>
+      <connect from_op="Multiply (8)" from_port="output 1" to_op="Aggregate" to_port="example set input"/>
+      <connect from_op="Multiply (8)" from_port="output 2" to_op="Join (4)" to_port="right"/>
+      <connect from_op="Aggregate" from_port="example set output" to_op="Generate ID" to_port="example set input"/>
+      <connect from_op="Generate ID" from_port="example set output" to_op="Rename" to_port="example set input"/>
+      <connect from_op="Rename" from_port="example set output" to_op="Join (4)" to_port="left"/>
+      <connect from_op="Join (4)" from_port="join" to_op="Remove Duplicates (2)" to_port="example set input"/>
+      <connect from_op="Remove Duplicates (2)" from_port="example set output" to_op="Multiply (2)" to_port="input"/>
+      <connect from_op="Multiply (2)" from_port="output 1" to_op="Write Database (2)" to_port="input"/>
+      <connect from_op="Multiply (2)" from_port="output 2" to_op="Join (5)" to_port="left"/>
+      <connect from_op="Write Database (2)" from_port="through" to_port="result 2"/>
+      <connect from_op="Select Attributes (3)" from_port="example set output" to_op="Join (5)" to_port="right"/>
+      <connect from_op="Select Attributes (3)" from_port="original" to_op="Select Attributes (20)" to_port="example set input"/>
+      <connect from_op="Join (5)" from_port="join" to_op="Select Attributes (18)" to_port="example set input"/>
+      <connect from_op="Select Attributes (18)" from_port="example set output" to_op="Join (6)" to_port="left"/>
+      <connect from_op="Select Attributes (20)" from_port="example set output" to_op="Join (6)" to_port="right"/>
+      <connect from_op="Select Attributes (20)" from_port="original" to_op="Select Attributes (4)" to_port="example set input"/>
+      <connect from_op="Select Attributes (4)" from_port="example set output" to_op="Multiply (9)" to_port="input"/>
+      <connect from_op="Select Attributes (4)" from_port="original" to_op="Select Attributes (23)" to_port="example set input"/>
+      <connect from_op="Multiply (9)" from_port="output 1" to_op="Aggregate (2)" to_port="example set input"/>
+      <connect from_op="Multiply (9)" from_port="output 2" to_op="Join (8)" to_port="right"/>
+      <connect from_op="Aggregate (2)" from_port="example set output" to_op="Generate ID (3)" to_port="example set input"/>
+      <connect from_op="Generate ID (3)" from_port="example set output" to_op="Rename (3)" to_port="example set input"/>
+      <connect from_op="Rename (3)" from_port="example set output" to_op="Join (8)" to_port="left"/>
+      <connect from_op="Join (6)" from_port="join" to_op="Select Attributes (19)" to_port="example set input"/>
+      <connect from_op="Select Attributes (19)" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Join (7)" to_port="right"/>
+      <connect from_op="Join (8)" from_port="join" to_op="Remove Duplicates (3)" to_port="example set input"/>
+      <connect from_op="Remove Duplicates (3)" from_port="example set output" to_op="Multiply (3)" to_port="input"/>
+      <connect from_op="Multiply (3)" from_port="output 1" to_op="Write Database (4)" to_port="input"/>
+      <connect from_op="Multiply (3)" from_port="output 2" to_op="Join (9)" to_port="left"/>
+      <connect from_op="Write Database (4)" from_port="through" to_port="result 3"/>
+      <connect from_op="Select Attributes (23)" from_port="example set output" to_op="Join (9)" to_port="right"/>
+      <connect from_op="Select Attributes (23)" from_port="original" to_op="Select Attributes (25)" to_port="example set input"/>
+      <connect from_op="Join (9)" from_port="join" to_op="Select Attributes (24)" to_port="example set input"/>
+      <connect from_op="Select Attributes (24)" from_port="example set output" to_op="Join (10)" to_port="left"/>
+      <connect from_op="Select Attributes (25)" from_port="example set output" to_op="Join (10)" to_port="right"/>
+      <connect from_op="Select Attributes (25)" from_port="original" to_op="Select Attributes (5)" to_port="example set input"/>
+      <connect from_op="Join (10)" from_port="join" to_op="Select Attributes (26)" to_port="example set input"/>
+      <connect from_op="Select Attributes (26)" from_port="example set output" to_op="Set Role (2)" to_port="example set input"/>
+      <connect from_op="Set Role (2)" from_port="example set output" to_op="Join (11)" to_port="right"/>
+      <connect from_op="Select Attributes (5)" from_port="example set output" to_op="Multiply (10)" to_port="input"/>
+      <connect from_op="Select Attributes (5)" from_port="original" to_op="Select Attributes (28)" to_port="example set input"/>
+      <connect from_op="Multiply (10)" from_port="output 1" to_op="Aggregate (3)" to_port="example set input"/>
+      <connect from_op="Multiply (10)" from_port="output 2" to_op="Join (12)" to_port="right"/>
+      <connect from_op="Aggregate (3)" from_port="example set output" to_op="Generate ID (4)" to_port="example set input"/>
+      <connect from_op="Generate ID (4)" from_port="example set output" to_op="Rename (5)" to_port="example set input"/>
+      <connect from_op="Rename (5)" from_port="example set output" to_op="Join (12)" to_port="left"/>
+      <connect from_op="Join (12)" from_port="join" to_op="Remove Duplicates (4)" to_port="example set input"/>
+      <connect from_op="Remove Duplicates (4)" from_port="example set output" to_op="Multiply (4)" to_port="input"/>
+      <connect from_op="Multiply (4)" from_port="output 1" to_op="Write Database (8)" to_port="input"/>
+      <connect from_op="Multiply (4)" from_port="output 2" to_op="Join (13)" to_port="left"/>
+      <connect from_op="Write Database (8)" from_port="through" to_port="result 4"/>
+      <connect from_op="Select Attributes (28)" from_port="example set output" to_op="Join (13)" to_port="right"/>
+      <connect from_op="Select Attributes (28)" from_port="original" to_op="Select Attributes (30)" to_port="example set input"/>
+      <connect from_op="Join (13)" from_port="join" to_op="Select Attributes (29)" to_port="example set input"/>
+      <connect from_op="Select Attributes (29)" from_port="example set output" to_op="Join (14)" to_port="left"/>
+      <connect from_op="Select Attributes (30)" from_port="example set output" to_op="Join (14)" to_port="right"/>
+      <connect from_op="Select Attributes (30)" from_port="original" to_op="Select Attributes (8)" to_port="example set input"/>
+      <connect from_op="Join (14)" from_port="join" to_op="Select Attributes (31)" to_port="example set input"/>
+      <connect from_op="Select Attributes (31)" from_port="example set output" to_op="Set Role (3)" to_port="example set input"/>
+      <connect from_op="Set Role (3)" from_port="example set output" to_op="Join (15)" to_port="right"/>
+      <connect from_op="Select Attributes (8)" from_port="example set output" to_op="Multiply (11)" to_port="input"/>
+      <connect from_op="Select Attributes (8)" from_port="original" to_op="Select Attributes (33)" to_port="example set input"/>
+      <connect from_op="Multiply (11)" from_port="output 1" to_op="Aggregate (4)" to_port="example set input"/>
+      <connect from_op="Multiply (11)" from_port="output 2" to_op="Join (16)" to_port="right"/>
+      <connect from_op="Aggregate (4)" from_port="example set output" to_op="Generate ID (5)" to_port="example set input"/>
+      <connect from_op="Generate ID (5)" from_port="example set output" to_op="Rename (8)" to_port="example set input"/>
+      <connect from_op="Rename (8)" from_port="example set output" to_op="Join (16)" to_port="left"/>
+      <connect from_op="Join (16)" from_port="join" to_op="Remove Duplicates (5)" to_port="example set input"/>
+      <connect from_op="Remove Duplicates (5)" from_port="example set output" to_op="Multiply (5)" to_port="input"/>
+      <connect from_op="Multiply (5)" from_port="output 1" to_op="Write Database (15)" to_port="input"/>
+      <connect from_op="Multiply (5)" from_port="output 2" to_op="Join (17)" to_port="left"/>
+      <connect from_op="Write Database (15)" from_port="through" to_port="result 5"/>
+      <connect from_op="Select Attributes (33)" from_port="example set output" to_op="Join (17)" to_port="right"/>
+      <connect from_op="Select Attributes (33)" from_port="original" to_op="Select Attributes (34)" to_port="example set input"/>
+      <connect from_op="Join (17)" from_port="join" to_op="Select Attributes (32)" to_port="example set input"/>
+      <connect from_op="Select Attributes (32)" from_port="example set output" to_op="Join (18)" to_port="left"/>
+      <connect from_op="Select Attributes (34)" from_port="example set output" to_op="Join (18)" to_port="right"/>
+      <connect from_op="Select Attributes (34)" from_port="original" to_port="result 6"/>
+      <connect from_op="Join (18)" from_port="join" to_op="Select Attributes (35)" to_port="example set input"/>
+      <connect from_op="Select Attributes (35)" from_port="example set output" to_op="Set Role (4)" to_port="example set input"/>
+      <connect from_op="Set Role (4)" from_port="example set output" to_op="Join (19)" to_port="right"/>
+      <connect from_op="Join (7)" from_port="join" to_op="Join (11)" to_port="left"/>
+      <connect from_op="Join (11)" from_port="join" to_op="Join (15)" to_port="left"/>
+      <connect from_op="Join (15)" from_port="join" to_op="Join (19)" to_port="left"/>
+      <connect from_op="Join (19)" from_port="join" to_op="Select Attributes (21)" to_port="example set input"/>
+      <connect from_op="Select Attributes (21)" from_port="example set output" to_op="Write Database" to_port="input"/>
+      <connect from_op="Write Database" from_port="through" to_port="result 7"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
+      <portSpacing port="sink_result 6" spacing="0"/>
+      <portSpacing port="sink_result 7" spacing="0"/>
+      <portSpacing port="sink_result 8" spacing="0"/>
+    </process>
+  </operator>
+</process>
